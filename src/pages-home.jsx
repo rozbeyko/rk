@@ -315,7 +315,7 @@ export function NowPage() {
           ))}
         </ul>
         <p className="mono small muted" style={{ marginTop: 32 }}>
-          Last updated · {NOW.updated} · inspired by <a className="link" href="https://nownownow.com" target="_blank" rel="noreferrer">nownownow.com</a>
+          Last updated · {NOW.updated}
         </p>
       </div>
     </main>

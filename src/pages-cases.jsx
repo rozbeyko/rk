@@ -140,19 +140,33 @@ export function CaseDetail({ slug }) {
               <div className="row"><div className="k">Stack & methods</div><div className="v">{c.tags.join(' · ')}</div></div>
             </div>
 
-            <div style={{ marginTop: 32 }}>
-              <div className="up muted" style={{ marginBottom: 12 }}>References for this work</div>
-              <div className="quote-card" style={{ padding: 20 }}>
-                <p className="body" style={{ fontSize: 15 }}>{RECS[idx % RECS.length].body.slice(0, 200)}…</p>
-                <div className="who">
-                  <div className="avatar">{RECS[idx % RECS.length].name.split(' ').map((p) => p[0]).join('')}</div>
-                  <div>
-                    <div className="name">{RECS[idx % RECS.length].name}</div>
-                    <div className="role">{RECS[idx % RECS.length].role}</div>
-                  </div>
+            {(() => {
+              const refs = (c.refs || [])
+                .map((slug) => RECS.find((r) => r.slug === slug))
+                .filter(Boolean);
+              if (refs.length === 0) return null;
+              return (
+                <div style={{ marginTop: 32 }}>
+                  <div className="up muted" style={{ marginBottom: 12 }}>References for this work</div>
+                  {refs.map((r, i) => (
+                    <div
+                      key={r.slug}
+                      className="quote-card"
+                      style={{ padding: 20, marginBottom: i < refs.length - 1 ? 12 : 0 }}
+                    >
+                      <p className="body" style={{ fontSize: 15 }}>{r.body.slice(0, 200)}…</p>
+                      <div className="who">
+                        <div className="avatar">{r.name.split(' ').map((p) => p[0]).join('')}</div>
+                        <div>
+                          <div className="name">{r.name}</div>
+                          <div className="role">{r.role}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            </div>
+              );
+            })()}
           </aside>
         </div>
 

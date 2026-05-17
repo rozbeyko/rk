@@ -178,7 +178,7 @@ export const EXPERIENCE = [
 export const OPERATING_NOW = [
   { status: "LIVE",     label: "40+ engagement portfolio at Triangu" },
   { status: "BUILDING", label: "Axora — internal delivery operating model" },
-  { status: "SHIPPING", label: "Maintra v1.1 — multi-vehicle plans + PDF export" },
+  { status: "SHIPPING", label: "Maintra — camera receipt scanning + iOS release" },
   { status: "TESTING",  label: "Delivery coaching concepts for senior PMs" },
 ];
 
@@ -240,6 +240,7 @@ export const CASES = [
     title: "AI underwriting, four products in parallel",
     period: "2024 — 2025",
     status: "ARCHIVED",
+    refs: ["demchenko", "koshel"],
     summary: "Owned end-to-end delivery of 4 AI products for a global insurer — Outlook & web submission intake, slip-intake, Guidewire PC enhancements, and Appian workflow optimisation.",
     kpis: [
       { n: "4", l: "AI products shipped" },
@@ -296,6 +297,7 @@ export const CASES = [
     title: "Scrum from scratch + pre-sales that closed",
     period: "2022 — 2023",
     status: "ARCHIVED",
+    refs: ["raskosov"],
     summary: "Acted as Scrum Master for GoTo and LastPass, built communication and backlog practices from zero, and participated in 3 pre-sales cycles (up to 16 ppl) that converted to multi-stream contracts.",
     kpis: [
       { n: "3", l: "pre-sales won" },
@@ -442,18 +444,21 @@ export const POSTS = [
 
 export const RECS = [
   {
+    slug: "demchenko",
     name: "Maksym Demchenko",
     role: "Project & Delivery Manager",
     relation: "Worked together at EPAM, same PMO · Dec 2025",
     body: "I had the pleasure of working with Kyrylo in the same PMO, and he consistently stood out as one of the most reliable and effective Project Managers I've worked alongside. He brings clarity to complex situations, communicates openly, and stays calm under pressure. Solution-oriented, professional, and truly great to collaborate with.",
   },
   {
+    slug: "raskosov",
     name: "Oleksandr Raskosov",
     role: "Director, Delivery Management at EPAM",
     relation: "Managed Kyrylo directly · Dec 2025",
     body: "Kyrylo is a great specialist. Very professional, polite and result-oriented. Always does his best to bring the best quality value for the client and grow relationships. Trusted partner with the client. Much recommended for managerial roles.",
   },
   {
+    slug: "koshel",
     name: "Andrii Koshel",
     role: "Senior Software Quality Engineer",
     relation: "Reported to Kyrylo directly · Dec 2025",
