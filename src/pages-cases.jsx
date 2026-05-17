@@ -1,6 +1,6 @@
 import React from 'react';
 import { CASES, RECS } from './data.js';
-import { PageTitle, KpiRow } from './ui.jsx';
+import { PageTitle, KpiRow, LiveSignal } from './ui.jsx';
 
 export function CasesPage() {
   return (
@@ -15,6 +15,9 @@ export function CasesPage() {
         <div className="cards cards-2">
           {CASES.map((c, i) => (
             <a key={c.slug} href={'#/case/' + c.slug} className="card card-link">
+              {c.status && (
+                <div className={'case-status ' + c.status.toLowerCase()}>{c.status}</div>
+              )}
               <div className="kicker">
                 <span>{String(i + 1).padStart(2, '0')} · {c.period}</span>
                 <span>{c.company.split(' via ')[0]}</span>
@@ -83,11 +86,44 @@ export function CaseDetail({ slug }) {
 
         <div className="two-col" style={{ marginTop: 48 }}>
           <article className="prose">
+            {/* Active cases get a small operating signal up top */}
+            {c.status && c.status !== 'ARCHIVED' && (
+              <div style={{ marginBottom: 24 }}>
+                <LiveSignal
+                  status={c.slug === 'axora' ? 'BUILDING' : c.slug === 'maintra' ? 'SHIPPING' : 'LIVE'}
+                  label={
+                    c.slug === 'axora'   ? 'Internal operating model · live in parts, still evolving' :
+                    c.slug === 'maintra' ? 'v1 live · v1.1 in build' :
+                    'Currently active'
+                  }
+                />
+              </div>
+            )}
+
             {c.body.map((seg, i) => (
               seg.h
                 ? <h2 key={i}>{seg.h}</h2>
                 : <p key={i} dangerouslySetInnerHTML={{ __html: seg.p.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') }} />
             ))}
+
+            {c.capabilities && (
+              <>
+                <h2>Capabilities</h2>
+                <div className="capabilities">
+                  {c.capabilities.map((cap, i) => (
+                    <div key={i} className={'cap-row ' + cap.state}>
+                      <span className="cap-mark">
+                        {cap.state === 'done' ? '✓' : cap.state === 'partial' ? '~' : '○'}
+                      </span>
+                      <span className="cap-label">{cap.label}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mono small muted" style={{ marginTop: 12 }}>
+                  ✓ shipped · ~ in build · ○ on the list
+                </p>
+              </>
+            )}
 
             {c.slug === 'maintra' && (
               <p style={{ marginTop: 24 }}>

@@ -51,6 +51,11 @@ export const EXPERIENCE = [
         title: "Head of Delivery",
         when: "May 2026 — Present",
         where: "Kyiv · Hybrid",
+        buildout: {
+          label: "Operating model buildout",
+          stages: ["FOUNDATION", "ADOPTION", "SCALE"],
+          current: "ADOPTION",
+        },
         bullets: [
           "Own **portfolio management of 40+ projects** with **50+ people** allocated across them.",
           "Building **new departments and practices** for the company portfolio — most notably an internal **AI practice** (pilots, AI-architect interviews, packaged offers, Rovo use cases).",
@@ -159,12 +164,82 @@ export const EXPERIENCE = [
   },
 ];
 
+// ----- Operating-system layer -------------------------------------------
+//
+// OPERATING_NOW   → Home "Operating now" panel + small command-center vibe.
+// NOW_TIMELINE    → /now page is rebuilt as an operating journal, ordered
+//                   by quarter, with status dots.
+// MATURITY        → About-page "Delivery Maturity Model" rail.
+// CASES[*].status → tiny mono pill on case cards (LIVE / BUILDING / ARCHIVED).
+// CASES[axora]    → new in-progress case with capabilities checklist.
+// EXPERIENCE[...].buildout → optional FOUNDATION → ADOPTION → SCALE rail
+//                   rendered under a CV role.
+
+export const OPERATING_NOW = [
+  { status: "LIVE",     label: "40+ engagement portfolio at Triangu" },
+  { status: "BUILDING", label: "Axora — internal delivery operating model" },
+  { status: "SHIPPING", label: "Maintra v1.1 — multi-vehicle plans + PDF export" },
+  { status: "TESTING",  label: "Delivery coaching concepts for senior PMs" },
+];
+
+export const NOW_TIMELINE = [
+  { quarter: "Q1 2026", status: "completed", label: "Rate cards + proposal math" },
+  { quarter: "Q1 2026", status: "completed", label: "Delivery HQ Confluence space" },
+  { quarter: "Q2 2026", status: "completed", label: "Portfolio registry + tiering" },
+  { quarter: "Q2 2026", status: "live",      label: "Executive alignment cadence" },
+  { quarter: "Q2 2026", status: "live",      label: "Capacity visibility" },
+  { quarter: "Q2 2026", status: "building",  label: "Axora v1 — internal SaaS" },
+  { quarter: "Q3 2026", status: "next",      label: "Delivery coaching beta" },
+];
+
+export const MATURITY = {
+  stages: ["Chaos", "Visibility", "Governance", "Predictability", "Scale"],
+  current: "Governance",
+};
+
 export const CASES = [
+  {
+    slug: "axora",
+    company: "Triangu (internal)",
+    title: "Axora — operating model buildout",
+    period: "2026 — present",
+    status: "LIVE",
+    summary: "Building Triangu's delivery operating model from first principles — rate cards, executive cadence, portfolio registry, capacity visibility, and a 'Delivery Cockpit' internal SaaS that answers what we're delivering, where margins leak, who's allocated where, and how healthy the company is.",
+    kpis: [
+      { n: "40+", l: "projects in portfolio" },
+      { n: "50+", l: "people allocated" },
+      { n: "6",   l: "contracts won/renewed" },
+      { n: "100%", l: "invoicing accuracy" },
+    ],
+    tags: ["Delivery", "Operating Model", "Internal SaaS", "Pre-sales"],
+    body: [
+      { h: "The brief" },
+      { p: "Triangu was scaling without a delivery practice. I was the first delivery hire — promoted from Delivery Manager to Head of Delivery after six months. The mandate: replace average-rate guessing with defensible pricing, replace \"ask around\" with a portfolio registry, replace founder-in-the-weeds with weekly executive-alignment cadence." },
+      { h: "What it is" },
+      { p: "An internal operating system for delivery — practice-first, with internal tooling layered in as the team outgrows spreadsheets. **Live in parts. Still evolving.** The case below lists every capability, what's shipped, what's in build, what's still on the list." },
+      { h: "Why I'd treat it as a case study" },
+      { p: "Most \"head of delivery\" hires inherit a practice. This one started with a blank page — rate cards, Jira intake, exec cadence, portfolio tiering, financial controls, the lot. Outcomes after six months were measurable: **100% invoicing/deadline accuracy**, **6 new contracts won or renewed**, leadership out of the micro-details." },
+    ],
+    capabilities: [
+      { state: "done",    label: "Rate cards (role/seniority-based) + discount governance" },
+      { state: "done",    label: "Delivery HQ — Confluence space" },
+      { state: "done",    label: "Initiative registry — DI Kanban for non-billable work" },
+      { state: "done",    label: "Portfolio registry + tiering" },
+      { state: "done",    label: "Executive alignment cadence (weekly)" },
+      { state: "done",    label: "Sales-to-delivery intake — Jira front door" },
+      { state: "partial", label: "Capacity forecasting" },
+      { state: "partial", label: "Plan vs Fact / margin visibility" },
+      { state: "partial", label: "Axora — internal Delivery Cockpit (in build)" },
+      { state: "todo",    label: "Delivery health scoring" },
+      { state: "todo",    label: "Talent pool + alumni bench" },
+    ],
+  },
   {
     slug: "sompo",
     company: "SOMPO via EPAM",
     title: "AI underwriting, four products in parallel",
     period: "2024 — 2025",
+    status: "ARCHIVED",
     summary: "Owned end-to-end delivery of 4 AI products for a global insurer — Outlook & web submission intake, slip-intake, Guidewire PC enhancements, and Appian workflow optimisation.",
     kpis: [
       { n: "4", l: "AI products shipped" },
@@ -193,6 +268,7 @@ export const CASES = [
     company: "EF Education First via EPAM",
     title: "Agile transformation that actually moved velocity",
     period: "2022 — 2024",
+    status: "ARCHIVED",
     summary: "Drove Agile transformation for EF engineering teams while running multi-stream delivery across 50+ specialists. Improved velocity, retention, and client trust at the same time.",
     kpis: [
       { n: "+25%", l: "sprint velocity" },
@@ -219,6 +295,7 @@ export const CASES = [
     company: "LastPass + GoTo Group via EPAM",
     title: "Scrum from scratch + pre-sales that closed",
     period: "2022 — 2023",
+    status: "ARCHIVED",
     summary: "Acted as Scrum Master for GoTo and LastPass, built communication and backlog practices from zero, and participated in 3 pre-sales cycles (up to 16 ppl) that converted to multi-stream contracts.",
     kpis: [
       { n: "3", l: "pre-sales won" },
@@ -240,6 +317,7 @@ export const CASES = [
     company: "Ubisoft Kyiv",
     title: "Internal tools ecosystem, adopted by half the studio",
     period: "2021 — 2022",
+    status: "ARCHIVED",
     summary: "Led Agile transformation and internal tools delivery for QC, Production, and HR. Managed 25 people. Built an ecosystem adopted by 50%+ of Ubisoft Ukraine.",
     kpis: [
       { n: "25", l: "ppl on the tools team" },
@@ -259,6 +337,7 @@ export const CASES = [
     company: "Ubisoft Kyiv",
     title: "AAA QA coordination across four studios",
     period: "2019 — 2021",
+    status: "ARCHIVED",
     summary: "Led QA operations for AAA titles from Alpha to post-release: The Division 2 and Far Cry 6. Coordinated 25+ testers across Kyiv, Odesa, Malmö, Montreal and Quebec.",
     kpis: [
       { n: "2", l: "AAA titles" },
@@ -278,6 +357,7 @@ export const CASES = [
     company: "MHP SE",
     title: "Drones, ERPs, and the realities of agri-tech",
     period: "2017 — 2018",
+    status: "ARCHIVED",
     summary: "Managed IT initiatives and internal startups for a major agricultural holding: finance, payroll, production. Kicked off a UAV field-scanning initiative and coordinated outstaffed dev teams on 1C / SAP-based systems.",
     kpis: [
       { n: "1", l: "UAV scanning programme" },
@@ -294,7 +374,8 @@ export const CASES = [
     slug: "maintra",
     company: "Solo · 2026",
     title: "Maintra — shipping my own product",
-    period: "2026",
+    period: "2026 — present",
+    status: "LIVE",
     summary: "First fully personal product launch — an AI-powered service book for car owners. Born from a real, boring problem: I could never keep track of what had been done to my car and what was due next.",
     kpis: [
       { n: "1", l: "solo founder" },

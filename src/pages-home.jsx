@@ -1,6 +1,6 @@
 import React from 'react';
-import { SITE, NOW, CASES, RECS, SKILLS } from './data.js';
-import { Portrait, Reveal, StatStrip, PageTitle, asset } from './ui.jsx';
+import { SITE, NOW, CASES, RECS, SKILLS, OPERATING_NOW, NOW_TIMELINE, MATURITY } from './data.js';
+import { Portrait, Reveal, StatStrip, PageTitle, LiveSignal, asset } from './ui.jsx';
 
 export function HomePage() {
   return (
@@ -62,6 +62,14 @@ export function HomePage() {
               <div className="row"><div className="k">Education</div><div className="v">MA Innovative Management, Taras Shevchenko Nat'l University of Kyiv</div></div>
             </div>
           </div>
+        </section>
+
+        {/* Operating now — command-center signal */}
+        <section className="op-now">
+          <div className="op-now-head">Operating now</div>
+          {OPERATING_NOW.map((s, i) => (
+            <LiveSignal key={i} status={s.status} label={s.label} />
+          ))}
         </section>
 
         {/* Featured work */}
@@ -185,6 +193,18 @@ export function AboutPage() {
           lede="Head of Delivery with 6+ years leading complex, multi-team initiatives across insurance, SaaS, and gaming. I specialise in turning messy ideas into predictable delivery: clear scope, realistic plans, transparent risks, and steady outcomes for the business."
         />
 
+        {/* Delivery maturity rail — where I operate today */}
+        <div className="maturity-rail">
+          <div className="mr-head">Delivery maturity model · where I operate today</div>
+          <div className="mr-stages">
+            {MATURITY.stages.map((s) => (
+              <div key={s} className={'mr-stage' + (s === MATURITY.current ? ' current' : '')}>
+                {s}
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="two-col">
           <div className="prose">
             <h2>How I got here</h2>
@@ -269,8 +289,23 @@ export function NowPage() {
         <PageTitle
           crumb={[{ label: '007 — Now' }, { label: NOW.updated }]}
           title='What I&rsquo;m <em>actually</em> doing right now.'
-          lede="A /now page in the Derek Sivers sense — a snapshot of current focus, current side bets, and what I'm deliberately not doing. Updated whenever something material changes."
+          lede="An operating journal, not a marketing page. What's shipped this quarter, what's in build, what's next. Updated whenever something material changes."
         />
+
+        {/* Operating timeline — what shipped, what's live, what's in build, what's next */}
+        <div className="op-now-head" style={{ marginTop: 16 }}>Operating timeline</div>
+        <div className="op-timeline">
+          {NOW_TIMELINE.map((row, i) => (
+            <div key={i} className={'op-tl-row ' + row.status}>
+              <span className="op-tl-quarter">{row.quarter}</span>
+              <span className="op-tl-label">{row.label}</span>
+              <span className="op-tl-status">{row.status}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Working-state notes — the older /now bullets, kept as supporting context */}
+        <div className="op-now-head" style={{ marginTop: 64 }}>Working state · {NOW.updated}</div>
         <ul style={{ listStyle: 'none', padding: 0, margin: 0, borderTop: '1px solid var(--line)' }}>
           {NOW.bullets.map((b, i) => (
             <li key={i} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 32, padding: '28px 0', borderBottom: '1px solid var(--line)' }}>

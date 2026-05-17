@@ -55,6 +55,21 @@ export function Reveal({ children, delay = 0 }) {
   return <div ref={ref} className={'reveal' + (shown ? ' in' : '')} style={{ transitionDelay: delay + 'ms' }}>{children}</div>;
 }
 
+// LiveSignal — atomic operating-status row.
+//   <LiveSignal status="LIVE" label="40+ engagement portfolio" />
+// Supported statuses (case-insensitive, '_' or ' ' for compound):
+//   LIVE, BUILDING, SHIPPING, ROLLING_OUT, STABLE, TESTING, NEXT, ARCHIVED
+export function LiveSignal({ status, label }) {
+  const cls = 'ls-' + String(status).toLowerCase().replace(/[_ ]/g, '-');
+  return (
+    <div className={'live-signal ' + cls}>
+      <span className="ls-dot" aria-hidden="true" />
+      <span className="ls-status">{String(status).replace(/_/g, ' ')}</span>
+      <span className="ls-label">{label}</span>
+    </div>
+  );
+}
+
 // Stat strip
 export function StatStrip({ items = STATS }) {
   return (

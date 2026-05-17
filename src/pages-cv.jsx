@@ -1,4 +1,20 @@
 import React, { Fragment } from 'react';
+
+// Inline buildout rail — FOUNDATION → ADOPTION → SCALE with pulsing dot on current.
+// Only renders when a role has a `buildout` field in data.js.
+function BuildoutRail({ label, stages, current }) {
+  return (
+    <div className="buildout-rail">
+      <span>{label}:</span>
+      {stages.map((s, i) => (
+        <Fragment key={s}>
+          {i > 0 && <span className="br-sep">→</span>}
+          <span className={'br-stage' + (s === current ? ' current' : '')}>{s}</span>
+        </Fragment>
+      ))}
+    </div>
+  );
+}
 import { EXPERIENCE, EDUCATION, VOLUNTEER } from './data.js';
 import { PageTitle, StatStrip, LogoMark } from './ui.jsx';
 
@@ -41,6 +57,13 @@ export function WorkPage() {
                   </div>
                   <div className="tl-body">
                     <h3>{role.title}</h3>
+                    {role.buildout && (
+                      <BuildoutRail
+                        label={role.buildout.label}
+                        stages={role.buildout.stages}
+                        current={role.buildout.current}
+                      />
+                    )}
                     <ul>
                       {role.bullets.map((b, bi) => (
                         <li key={bi} dangerouslySetInnerHTML={{ __html: b.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') }} />

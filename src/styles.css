@@ -12,6 +12,7 @@
   --accent-deep: #7d3015;
   --accent-soft: #e1bda9;
   --good: #4a6b3a;
+  --amber: #b07e2a;
 
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -950,6 +951,344 @@ footer.foot {
 @media (prefers-reduced-motion: reduce) {
   .civic-photo { transition: none; }
   .civic-photo:hover { transform: none; box-shadow: none; }
+}
+
+/* ============================================================
+   Live operating-system layer
+   Subtle pulses + status dots + timeline rails + maturity rails.
+   Editorial. Quiet. Alive.
+   ============================================================ */
+
+/* Pulse keyframes — used by multiple dots */
+@keyframes ls-pulse-good {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 107, 58, 0.40); }
+  50%      { box-shadow: 0 0 0 5px rgba(74, 107, 58, 0); }
+}
+@keyframes ls-pulse-amber {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(176, 126, 42, 0.40); }
+  50%      { box-shadow: 0 0 0 5px rgba(176, 126, 42, 0); }
+}
+@keyframes ls-pulse-accent {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(168, 66, 31, 0.38); }
+  50%      { box-shadow: 0 0 0 5px rgba(168, 66, 31, 0); }
+}
+
+/* Live signal — atomic [dot] [status] [label] */
+.live-signal {
+  display: grid;
+  grid-template-columns: 14px 110px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 6px 0;
+}
+.live-signal .ls-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  align-self: center;
+  flex-shrink: 0;
+}
+.live-signal .ls-status {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.live-signal .ls-label {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+}
+/* Variants */
+.ls-live .ls-dot,
+.ls-shipping .ls-dot,
+.ls-stable .ls-dot { background: var(--good); }
+.ls-building .ls-dot,
+.ls-testing .ls-dot,
+.ls-rolling-out .ls-dot { background: var(--amber); }
+.ls-next .ls-dot {
+  background: transparent;
+  border: 1px solid var(--muted-2);
+  width: 7px;
+  height: 7px;
+}
+.ls-archived .ls-dot { background: var(--muted-2); }
+.ls-live .ls-dot, .ls-shipping .ls-dot { animation: ls-pulse-good 2.6s ease-in-out infinite; }
+.ls-building .ls-dot, .ls-testing .ls-dot { animation: ls-pulse-amber 2.6s ease-in-out infinite; }
+.ls-rolling-out .ls-dot { animation: ls-pulse-amber 4s ease-in-out infinite; }
+
+/* Operating Now — vertical stack on home/about */
+.op-now {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0 22px;
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.op-now-head {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.op-now-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* Operating Timeline — vertical rail with quarters */
+.op-timeline {
+  position: relative;
+  margin: 32px 0;
+  padding-left: 110px;
+}
+.op-timeline::before {
+  content: '';
+  position: absolute;
+  left: 99px;
+  top: 14px;
+  bottom: 14px;
+  width: 1px;
+  background: var(--line);
+}
+.op-tl-row {
+  position: relative;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.op-tl-row:last-child { border-bottom: 0; }
+.op-tl-row::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 22px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.op-tl-quarter {
+  position: absolute;
+  left: -110px;
+  top: 18px;
+  width: 80px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.op-tl-label {
+  font-family: var(--serif);
+  font-size: 19px;
+  color: var(--ink);
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+}
+.op-tl-status {
+  display: inline-block;
+  margin-left: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted-2);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  vertical-align: 2px;
+}
+.op-tl-row.completed::before { background: var(--good); }
+.op-tl-row.live::before {
+  background: var(--good);
+  animation: ls-pulse-good 2.6s ease-in-out infinite;
+}
+.op-tl-row.live .op-tl-status { color: var(--good); }
+.op-tl-row.building::before {
+  background: var(--amber);
+  animation: ls-pulse-amber 2.6s ease-in-out infinite;
+}
+.op-tl-row.building .op-tl-status { color: var(--amber); }
+.op-tl-row.next::before {
+  background: transparent;
+  border: 1px solid var(--muted-2);
+  top: 23px;
+  width: 7px;
+  height: 7px;
+}
+.op-tl-row.next .op-tl-label { color: var(--ink-2); }
+@media (max-width: 760px) {
+  .op-timeline { padding-left: 22px; }
+  .op-timeline::before { left: 11px; }
+  .op-tl-quarter { position: static; display: block; margin-bottom: 4px; width: auto; }
+  .op-tl-row::before { left: -15px; top: 22px; }
+  .op-tl-row.next::before { left: -15px; top: 23px; }
+}
+
+/* Delivery maturity rail — horizontal */
+.maturity-rail { margin: 40px 0; }
+.maturity-rail .mr-head {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 20px;
+}
+.maturity-rail .mr-stages {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+.maturity-rail .mr-stage {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 14px 4px 4px;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+.maturity-rail .mr-stage.current {
+  color: var(--ink);
+  font-weight: 500;
+  border-top-color: var(--accent);
+}
+.maturity-rail .mr-stage.current::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: ls-pulse-accent 2.6s ease-in-out infinite;
+}
+@media (max-width: 760px) {
+  .maturity-rail .mr-stages { grid-template-columns: 1fr; gap: 0; }
+  .maturity-rail .mr-stage {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+    text-align: left;
+    padding: 8px 0 8px 18px;
+  }
+  .maturity-rail .mr-stage.current { border-left-color: var(--accent); }
+  .maturity-rail .mr-stage.current::before {
+    left: -5px; top: 50%; transform: translateY(-50%);
+  }
+}
+
+/* Buildout rail — inline, under CV role */
+.buildout-rail {
+  margin: 14px 0 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.buildout-rail .br-stage { color: var(--muted-2); }
+.buildout-rail .br-stage.current {
+  color: var(--accent);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.buildout-rail .br-stage.current::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: ls-pulse-accent 2.6s ease-in-out infinite;
+}
+.buildout-rail .br-sep { color: var(--line-2); }
+
+/* Case status tag — tiny mono pill above title */
+.case-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted-2);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.case-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted-2);
+}
+.case-status.live {
+  color: var(--good);
+}
+.case-status.live::before {
+  background: var(--good);
+  animation: ls-pulse-good 2.6s ease-in-out infinite;
+}
+.case-status.archived { color: var(--muted-2); }
+.case-status.building {
+  color: var(--amber);
+}
+.case-status.building::before {
+  background: var(--amber);
+  animation: ls-pulse-amber 2.6s ease-in-out infinite;
+}
+
+/* Capabilities checklist — Axora case */
+.capabilities {
+  margin: 16px 0 24px;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.8;
+  display: grid;
+  gap: 4px;
+}
+.capabilities .cap-row {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: baseline;
+}
+.capabilities .cap-mark { text-align: left; font-weight: 500; }
+.capabilities .cap-row.done    .cap-mark  { color: var(--good); }
+.capabilities .cap-row.partial .cap-mark  { color: var(--amber); }
+.capabilities .cap-row.todo    .cap-mark  { color: var(--muted-2); }
+.capabilities .cap-row.done    .cap-label { color: var(--ink); }
+.capabilities .cap-row.partial .cap-label { color: var(--ink-2); }
+.capabilities .cap-row.todo    .cap-label { color: var(--muted); }
+
+/* Respect reduced-motion across the whole live-signal layer */
+@media (prefers-reduced-motion: reduce) {
+  .ls-live .ls-dot, .ls-shipping .ls-dot,
+  .ls-building .ls-dot, .ls-testing .ls-dot,
+  .ls-rolling-out .ls-dot,
+  .op-tl-row.live::before, .op-tl-row.building::before,
+  .maturity-rail .mr-stage.current::before,
+  .buildout-rail .br-stage.current::after,
+  .case-status.live::before, .case-status.building::before { animation: none; }
 }
 
 /* selection */
