@@ -70,7 +70,7 @@ export function CaseDetail({ slug }) {
             { label: String(idx + 1).padStart(2, '0') + ' · ' + c.company },
           ]}
           title={c.title}
-          lede={c.summary}
+          lede={c.lede || c.summary}
         />
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'center', marginBottom: 32 }}>
@@ -90,9 +90,9 @@ export function CaseDetail({ slug }) {
             {c.status && c.status !== 'ARCHIVED' && (
               <div style={{ marginBottom: 24 }}>
                 <LiveSignal
-                  status={c.slug === 'axora' ? 'BUILDING' : c.slug === 'maintra' ? 'SHIPPING' : 'LIVE'}
+                  status={c.slug === 'maintra' ? 'SHIPPING' : c.status}
                   label={
-                    c.slug === 'axora'   ? 'Internal operating model · live in parts, still evolving' :
+                    c.slug === 'axora'   ? 'Used in real work. Still evolving.' :
                     c.slug === 'maintra' ? 'v1 live · v1.1 in build' :
                     'Currently active'
                   }
@@ -106,24 +106,40 @@ export function CaseDetail({ slug }) {
                 : <p key={i} dangerouslySetInnerHTML={{ __html: seg.p.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') }} />
             ))}
 
-            {c.capabilities && (
-              <>
-                <h2>Capabilities</h2>
-                <div className="capabilities">
-                  {c.capabilities.map((cap, i) => (
-                    <div key={i} className={'cap-row ' + cap.state}>
-                      <span className="cap-mark">
-                        {cap.state === 'done' ? '✓' : cap.state === 'partial' ? '~' : '○'}
-                      </span>
-                      <span className="cap-label">{cap.label}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="mono small muted" style={{ marginTop: 12 }}>
-                  ✓ shipped · ~ in build · ○ on the list
-                </p>
-              </>
-            )}
+            {c.capabilities && (() => {
+              const groups = [
+                { state: 'done',    label: 'Shipped' },
+                { state: 'partial', label: 'Building' },
+                { state: 'todo',    label: 'On the list' },
+              ];
+              return (
+                <>
+                  <h2>Capabilities</h2>
+                  {groups.map((g) => {
+                    const items = c.capabilities.filter((cap) => cap.state === g.state);
+                    if (items.length === 0) return null;
+                    return (
+                      <div key={g.state} style={{ marginTop: 20 }}>
+                        <div className="up muted" style={{ marginBottom: 8 }}>{g.label}</div>
+                        <div className="capabilities">
+                          {items.map((cap, i) => (
+                            <div key={i} className={'cap-row ' + cap.state}>
+                              <span className="cap-mark">
+                                {cap.state === 'done' ? '✓' : cap.state === 'partial' ? '~' : '○'}
+                              </span>
+                              <span className="cap-label">{cap.label}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <p className="mono small muted" style={{ marginTop: 20 }}>
+                    ✓ shipped · ~ in build · ○ on the list
+                  </p>
+                </>
+              );
+            })()}
 
             {c.slug === 'maintra' && (
               <p style={{ marginTop: 24 }}>
@@ -136,7 +152,10 @@ export function CaseDetail({ slug }) {
             <div className="side-meta">
               <div className="row"><div className="k">Client / Company</div><div className="v">{c.company}</div></div>
               <div className="row"><div className="k">Period</div><div className="v">{c.period}</div></div>
-              <div className="row"><div className="k">My role</div><div className="v">{idx === 0 ? 'Senior Project & Delivery Manager' : idx === 1 || idx === 2 ? 'Project Manager / Delivery Lead' : idx === 3 ? 'Delivery Manager, R&D Tools' : idx === 4 ? 'QA Team Coordinator' : idx === 5 ? 'Product / Project Manager' : 'Solo founder'}</div></div>
+              <div className="row"><div className="k">Role</div><div className="v">{c.role || '—'}</div></div>
+              {c.statusLabel && (
+                <div className="row"><div className="k">Status</div><div className="v">{c.statusLabel}</div></div>
+              )}
               <div className="row"><div className="k">Stack & methods</div><div className="v">{c.tags.join(' · ')}</div></div>
             </div>
 
