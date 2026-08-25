@@ -234,7 +234,7 @@ export function AboutPage() {
 
             <h2>On the personal side</h2>
             <p>
-              I'm a gamer (Ubisoft heritage — yes, I still play). I run a small <a className="link" href="#/creator">gaming creator account</a> on the side in English across TikTok, Instagram Reels and YouTube Shorts; the last 90 days passed 4M total views. Based in Kyiv.
+              I'm a gamer (Ubisoft heritage — yes, I still play) and, more recently, insufferable about cars. I run a <a className="link" href="#/creator">car account on Instagram</a> in English — started in June 2026, past 2M views in its first eleven weeks — after six years and two restarts on gaming accounts before it. Based in Kyiv.
             </p>
             <p>
               Since the start of the full-scale invasion in 2022 I've been part of fundraising efforts for Ukrainian Armed Forces units. Collectively we've channelled over ₴10 M UAH into vehicles, hard-to-source night-vision optics, drones, and consumables. The letters of appreciation I've received — from the 72nd Mechanised Brigade (Black Zaporozhians), the Special Operations Forces, the 67th Brigade, and the 131st Reconnaissance Battalion, among others — sit on a shelf at home next to my SAFe certificate, which I think is the right order.

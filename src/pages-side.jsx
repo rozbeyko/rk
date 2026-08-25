@@ -128,25 +128,25 @@ export function CreatorPage() {
     <main className="page">
       <div className="container">
         <PageTitle
-          crumb={[{ label: '006 — Creator' }, { label: 'Side hustle · 2025–26' }]}
-          title='Short-form <em>gaming clips</em>, in English.'
-          lede="A small creator account I run on the side. Started as a way to talk about AAA titles I actually play. Ended up with an audience and a useful lesson in shipping content on a cadence that nobody is paying me to keep."
+          crumb={[{ label: '006 — Creator' }, { label: 'Side hustle · 2026' }]}
+          title='Cars, in English. <em>Eleven weeks in.</em>'
+          lede="A car account I started on 10 June 2026 — the ownership side (what breaks, what it costs, what's actually worth doing) and the looking-at-them side (cars shot properly). Two and a half months later it's past two million views, on an audience that is almost entirely people who don't follow me."
         />
 
-        <div className="mono small muted" style={{ marginBottom: 32 }}>{CREATOR.windowLabel} · ref. <a className="link" href="https://rozbeyko.github.io/rok.ops/" target="_blank" rel="noreferrer">rozbeyko.github.io/rok.ops</a></div>
+        <div className="mono small muted" style={{ marginBottom: 32 }}>{CREATOR.windowLabel}</div>
 
         <StatStrip items={CREATOR.headlineStats} />
 
-        {/* Platform breakdown cards */}
+        {/* Content-type breakdown cards */}
         <div className="cards cards-3" style={{ marginTop: 40 }}>
-          {CREATOR.platformStats.map((p, i) => (
+          {CREATOR.contentMix.map((p, i) => (
             <div className="card" key={i} style={{ background: '#0f0f12', color: '#f4f2ec' }}>
               <div className="kicker" style={{ color: '#7a7670' }}>
-                <span>{String(i + 1).padStart(2, '0')} · Platform</span>
+                <span>{String(i + 1).padStart(2, '0')} · Content type</span>
                 <span style={{ color: p.color }}>● {p.name}</span>
               </div>
               <div style={{ fontFamily: 'var(--serif)', fontSize: 56, lineHeight: 1, letterSpacing: '-0.03em', margin: '8px 0 4px' }}>{p.views}</div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 12, color: p.color, letterSpacing: '0.05em' }}>{p.growth !== '—' ? p.growth + ' growth' : 'stable'}</div>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: 12, color: p.color, letterSpacing: '0.05em' }}>{p.growth}</div>
               <div style={{ marginTop: 16, fontSize: 14, color: '#a8a39a' }}>{p.note}</div>
             </div>
           ))}
@@ -157,10 +157,30 @@ export function CreatorPage() {
             <h2>What it is</h2>
             <p>{CREATOR.bio}</p>
             <p>
-              The format is short clips: tip videos for hard fights, "easiest way to" walkthroughs, gameplay reels. Almost all of it is around <b>Crimson Desert</b> right now — the boss-fight tip videos are the breakout hit.
+              Two halves that turn out to feed each other. One is <b>ownership</b> — what a car actually costs to keep, what fails and when, which jobs are worth paying for and which are a shop upselling you. That's the same itch that produced <a className="link" href="#/maintra">Maintra</a>; I just found out other people have it too. The other is <b>the way cars look</b> — shot deliberately, cut to hold your thumb still for eight seconds.
+            </p>
+            <p>
+              English, because that's where the audience is — and because I'd already paid the price of learning that lesson once (below).
             </p>
 
-            <h2>How I got here — three pivots, two restarts</h2>
+            <h2>What the numbers actually say</h2>
+            <p>
+              <b>2,072,274 views</b> and <b>1,027,277 unique viewers</b> in ninety days, from an account that only existed for seventy-four of them. <b>+4,072 net followers</b>, <b>209,071 interactions</b>. That's the headline. The interesting parts are underneath it.
+            </p>
+            <p>
+              <b>96.7% of reach came from people who don't follow the account.</b> The follower count is a receipt for work that already happened — it isn't the thing that distributes the work. I keep having to re-learn this in every medium I touch.
+            </p>
+            <p>
+              <b>Posts beat Reels roughly four to one</b> — 1.6M against 407K. That is the exact inverse of my gaming account, where <b>99.9%</b> of views came from Reels. Same person, same platform, same instincts, opposite answer. Which is a decent argument against most format advice you'll read: it's almost always someone generalising from one niche.
+            </p>
+            <p>
+              And the shape of the curve is one <b>spike</b>. A single post around <b>23 August</b> did roughly <b>800K views in a day</b> — call it two-fifths of the entire quarter. Everything before it is nearly flat. If I'd judged this account by any given week, I'd have drawn the wrong conclusion twice: once too early, once too late.
+            </p>
+
+            <h2>How I got here — two restarts from zero</h2>
+            <p>
+              This is the fourth account. The first three were about games.
+            </p>
             <p>
               I started trying short-form content back in <b>2020</b>. The format clicked in <b>2021</b>: my first TikTok account, <b>@ki_rich</b> ("Кирич"), built up to <b>106.4K followers and 2.8M likes</b> talking about games. In Russian — which is what I'd grown up speaking.
             </p>
@@ -194,23 +214,18 @@ export function CreatorPage() {
               Then <b>February 2022</b> happened. Continuing to make content in Russian wasn't something I wanted to do anymore. I walked away from the account and started over from zero, in Ukrainian.
             </p>
             <p>
-              The Ukrainian account found an audience — but the Ukrainian-speaking gaming market is small, and most of the audience I wanted to reach simply isn't on it. So in <b>2025</b> I made the call to start over <em>again</em>, this time in English. New account, new platform mix, back to zero followers.
+              The Ukrainian account found an audience — but the Ukrainian-speaking gaming market is small, and most of the audience I wanted to reach simply isn't on it. So in <b>2025</b> I made the call to start over <em>again</em>, this time in English. New account, new platform mix, back to zero followers. That one worked: <b>4.3M views in 90 days</b> across TikTok, Reels and Shorts, and eventually <b>monetised on TikTok</b>.
             </p>
             <p>
-              The numbers up top (4.3M views in 90 days; finally <b>monetised on TikTok</b>) are from that third account. The point of telling the long version isn't the metrics — it's that I quietly burnt down two working accounts and rebuilt twice. Once because the values asked for it, once because the ambition did. The day-job version of me makes a living telling teams that scope cuts win. This is what scope cuts cost when it's your own work.
+              The point of telling the long version isn't the metrics — it's that I quietly burnt down two working accounts and rebuilt twice. Once because the values asked for it, once because the ambition did. The day-job version of me makes a living telling teams that scope cuts win. This is what scope cuts cost when it's your own work.
+            </p>
+            <p>
+              Cars are the fourth start, and the first one that isn't a pivot away from something. It's just the subject I'd been boring my friends about anyway.
             </p>
 
-            <h2>What the last 90 days looked like</h2>
+            <h2>Why I keep doing this</h2>
             <p>
-              The last 90 days, across all three platforms, total around <b>4.3M views</b>: <b>2.6M on TikTok</b>, <b>934K on Instagram Reels</b>, and <b>805K on YouTube Shorts</b> — with YouTube Shorts growing <b>+2,718%</b> versus the previous 90 days. On Instagram, <b>98.9%</b> of reach came from non-followers, which is the right shape for short-form: this format rewards virality, not subscribers.
-            </p>
-            <p className="mono small muted">
-              Receipts on this page are stitched together from native creator dashboards. Same content, three platforms, three audiences. Full list of accounts on <a className="link" href="https://rozbeyko.github.io/rok.ops/" target="_blank" rel="noreferrer">rozbeyko.github.io/rok.ops</a>.
-            </p>
-
-            <h2>Why I'm proud of it</h2>
-            <p>
-              It is the part of my life where nobody is reviewing my work and nobody is paying me to ship. The PM in me wanted to know: when I have full autonomy over scope, cadence, and quality bar, what do I actually do? Turns out: I ship.
+              It is the part of my life where nobody is reviewing my work and nobody is paying me to ship. The PM in me wanted to know: when I have full autonomy over scope, cadence, and quality bar, what do I actually do? Turns out: I ship. Two and a half months, two million views, no client.
             </p>
 
             <h2>What it taught me about delivery</h2>
@@ -221,12 +236,13 @@ export function CreatorPage() {
 
           <aside style={{ position: 'sticky', top: 90, alignSelf: 'start' }}>
             <div className="side-meta">
-              <div className="row"><div className="k">Hub</div><div className="v"><a className="link" href="https://rozbeyko.github.io/rok.ops/" target="_blank" rel="noreferrer">{CREATOR.handle}</a></div></div>
+              <div className="row"><div className="k">Account</div><div className="v"><a className="link" href="https://www.instagram.com/rokjero/" target="_blank" rel="noreferrer">{CREATOR.handle}</a></div></div>
+              <div className="row"><div className="k">Platform</div><div className="v">Instagram</div></div>
               <div className="row"><div className="k">Language</div><div className="v">English</div></div>
-              <div className="row"><div className="k">Platforms</div><div className="v">TikTok · Instagram Reels · YouTube Shorts</div></div>
-              <div className="row"><div className="k">Format</div><div className="v">Short-form, mostly 9 : 16, 15–60s</div></div>
-              <div className="row"><div className="k">Niche</div><div className="v">AAA gaming · tip videos · boss fights</div></div>
-              <div className="row"><div className="k">Started</div><div className="v">2025</div></div>
+              <div className="row"><div className="k">Niche</div><div className="v">Car ownership & maintenance · car cinematography</div></div>
+              <div className="row"><div className="k">Started</div><div className="v">10 June 2026</div></div>
+              <div className="row"><div className="k">Followers</div><div className="v">4,500</div></div>
+              <div className="row"><div className="k">Previously</div><div className="v">Gaming, 2020–2026 · two restarts from zero</div></div>
             </div>
           </aside>
         </div>
@@ -255,39 +271,29 @@ export function CreatorPage() {
 
         <hr className="rule" />
 
-        {/* Top content */}
-        <h2 style={{ fontFamily: 'var(--serif)', fontWeight: 500, fontSize: 32, letterSpacing: '-0.02em', margin: '0 0 24px' }}>
-          Top content · last 90 days
-        </h2>
-        <table className="table">
-          <thead><tr><th style={{ width: 32 }}>#</th><th>Title</th><th style={{ textAlign: 'right', width: 100 }}>Views</th></tr></thead>
-          <tbody>
-            {CREATOR.topContent.map((c, i) => (
-              <tr key={i}>
-                <td className="year">{String(i + 1).padStart(2, '0')}</td>
-                <td style={{ fontFamily: 'var(--serif)', fontSize: 16 }}>{c.title}</td>
-                <td style={{ textAlign: 'right' }}>{c.views}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
         {/* Real screenshots */}
-        <h2 style={{ fontFamily: 'var(--serif)', fontWeight: 500, fontSize: 32, letterSpacing: '-0.02em', margin: '64px 0 24px' }}>
+        <h2 style={{ fontFamily: 'var(--serif)', fontWeight: 500, fontSize: 32, letterSpacing: '-0.02em', margin: '0 0 8px' }}>
           Receipts
         </h2>
-        <div className="phone-shots" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+        <p className="mono small muted" style={{ margin: '0 0 24px' }}>
+          Straight out of the native creator dashboards. Nothing here is a rounded-up estimate.
+        </p>
+        <div className="phone-shots" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
           <div className="phone-shot">
-            <img src={asset('assets/creator-analytics.png')} alt="TikTok analytics screenshot" />
-            <div className="label" style={{ color: '#00f5e0' }}>TikTok · 2.6M post views (90d)</div>
+            <img src={asset('assets/creator/rokjero-insights-90d.png')} alt="Instagram Insights for @rokjero — 2,072,274 views, +4,072 followers, 209,071 interactions over 90 days" />
+            <div className="label" style={{ color: '#c084fc' }}>Cars · @rokjero · 2.07M (90d)</div>
           </div>
           <div className="phone-shot">
-            <img src={asset('assets/creator-views.png')} alt="Instagram views screenshot" />
-            <div className="label" style={{ color: '#c084fc' }}>Instagram Reels · 934K views (90d)</div>
+            <img src={asset('assets/creator-analytics.png')} alt="TikTok analytics screenshot from the gaming account" />
+            <div className="label" style={{ color: '#00f5e0' }}>Gaming · TikTok · 2.6M (90d)</div>
           </div>
           <div className="phone-shot">
-            <img src={asset('assets/creator-90d.png')} alt="YouTube Shorts 90-day view screenshot" />
-            <div className="label" style={{ color: '#ff7a7a' }}>YouTube Shorts · 805K · +2,718%</div>
+            <img src={asset('assets/creator-views.png')} alt="Instagram views screenshot from the gaming account" />
+            <div className="label" style={{ color: '#c084fc' }}>Gaming · IG Reels · 934K (90d)</div>
+          </div>
+          <div className="phone-shot">
+            <img src={asset('assets/creator-90d.png')} alt="YouTube Shorts 90-day view screenshot from the gaming account" />
+            <div className="label" style={{ color: '#ff7a7a' }}>Gaming · YT Shorts · 805K</div>
           </div>
         </div>
       </div>
