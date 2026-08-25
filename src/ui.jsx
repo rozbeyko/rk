@@ -359,3 +359,78 @@ export function PhoneShowcase({ shots, side = 'right', badge, interval = 4200 })
     </div>
   );
 }
+
+// ReceiptWall — analytics screenshots as evidence. Dashboard captures are
+// dense; at thumbnail size nobody can read them, so the card carries the
+// claim in text and the image is the proof you open when you don't believe
+// it. Click (or Enter) opens the full capture in a lightbox.
+export function ReceiptWall({ groups }) {
+  const [open, setOpen] = useState(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(null); };
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  return (
+    <>
+      {groups.map((g) => (
+        <section key={g.title} className="receipts-group">
+          <div className="receipts-head">
+            <span className="up muted">{g.title}</span>
+            <span className="receipts-rule" aria-hidden="true" />
+            <span className="mono small muted">{g.window}</span>
+          </div>
+
+          <div className={'receipts-grid' + (g.featured ? ' is-featured' : '')}>
+            {g.items.map((r) => (
+              <figure className="receipt" key={r.src}>
+                <button
+                  type="button"
+                  className="receipt-frame"
+                  onClick={() => setOpen(r)}
+                  aria-label={`Open full screenshot — ${r.source}, ${r.headline}`}
+                >
+                  <img src={asset(r.src)} alt={r.alt || r.source} loading="lazy" />
+                  <span className="receipt-zoom" aria-hidden="true">⤢</span>
+                </button>
+                <figcaption className="receipt-cap">
+                  <span className="receipt-source mono">{r.source}</span>
+                  <span className="receipt-headline">{r.headline}</span>
+                  <span className="receipt-sub mono">{r.sub}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      {open && (
+        <div
+          className="receipt-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={open.source}
+          onClick={() => setOpen(null)}
+        >
+          <button type="button" className="receipt-close mono" onClick={() => setOpen(null)}>
+            Close ✕
+          </button>
+          <figure className="receipt-lightbox-inner" onClick={(e) => e.stopPropagation()}>
+            <img src={asset(open.src)} alt={open.alt || open.source} />
+            <figcaption className="mono">
+              <b>{open.source}</b> · {open.headline} · {open.sub}
+            </figcaption>
+          </figure>
+        </div>
+      )}
+    </>
+  );
+}

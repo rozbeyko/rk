@@ -1,6 +1,50 @@
 import React from 'react';
 import { SITE, CREATOR, CERTS, BOOKS, RECS, POSTS, CIVIC_GALLERY } from './data.js';
-import { PageTitle, StatStrip, KpiRow, LogoMark, Reveal, PhoneShowcase, asset } from './ui.jsx';
+import { PageTitle, StatStrip, KpiRow, LogoMark, Reveal, PhoneShowcase, ReceiptWall, asset } from './ui.jsx';
+
+const RECEIPTS = [
+  {
+    title: 'Cars · @rokjero',
+    window: 'Instagram · 26 May — 23 Aug 2026',
+    featured: true,
+    items: [
+      {
+        src: 'assets/creator/rokjero-insights-90d.png',
+        source: 'Instagram Insights',
+        headline: '2,072,274 views',
+        sub: '+4,072 followers · 209K interactions · 96.7% non-followers · posts 1.6M vs reels 407K',
+        alt: 'Instagram Insights for @rokjero — 2,072,274 views, +4,072 net followers, 209,071 interactions across 90 days',
+      },
+    ],
+  },
+  {
+    title: 'Gaming · the account before this one',
+    window: 'TikTok · Instagram · YouTube — 90-day windows, early 2026',
+    items: [
+      {
+        src: 'assets/creator-analytics.png',
+        source: 'TikTok Analytics',
+        headline: '2.6M post views',
+        sub: '156K likes · 16K shares · 1,300 comments · 11K profile views',
+        alt: 'TikTok analytics from the gaming account — 2.6M post views over 90 days',
+      },
+      {
+        src: 'assets/creator-views.png',
+        source: 'Instagram Insights',
+        headline: '934,686 views',
+        sub: '98.9% non-followers · 279,599 accounts reached · 99.9% from Reels',
+        alt: 'Instagram views from the gaming account — 934,686 views over 90 days',
+      },
+      {
+        src: 'assets/creator-90d.png',
+        source: 'YouTube Studio',
+        headline: '805,404 views',
+        sub: '+2,718% vs the previous 90 days · top clip 419K',
+        alt: 'YouTube Shorts 90-day views from the gaming account — 805,404 views',
+      },
+    ],
+  },
+];
 
 const MAINTRA_NOW = [
   { src: 'assets/maintra/v153-garage.jpg', label: '01 · Garage — the polaroid deck' },
@@ -311,31 +355,14 @@ export function CreatorPage() {
 
         <hr className="rule" />
 
-        {/* Real screenshots */}
+        {/* Receipts */}
         <h2 style={{ fontFamily: 'var(--serif)', fontWeight: 500, fontSize: 32, letterSpacing: '-0.02em', margin: '0 0 8px' }}>
           Receipts
         </h2>
-        <p className="mono small muted" style={{ margin: '0 0 24px' }}>
-          Straight out of the native creator dashboards. Nothing here is a rounded-up estimate.
+        <p className="mono small muted" style={{ margin: '0 0 36px', maxWidth: '62ch' }}>
+          Native creator dashboards, unedited. Click any one to read it full size — the numbers on this page all come from these four screens.
         </p>
-        <div className="phone-shots" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
-          <div className="phone-shot">
-            <img src={asset('assets/creator/rokjero-insights-90d.png')} alt="Instagram Insights for @rokjero — 2,072,274 views, +4,072 followers, 209,071 interactions over 90 days" />
-            <div className="label" style={{ color: '#c084fc' }}>Cars · @rokjero · 2.07M (90d)</div>
-          </div>
-          <div className="phone-shot">
-            <img src={asset('assets/creator-analytics.png')} alt="TikTok analytics screenshot from the gaming account" />
-            <div className="label" style={{ color: '#00f5e0' }}>Gaming · TikTok · 2.6M (90d)</div>
-          </div>
-          <div className="phone-shot">
-            <img src={asset('assets/creator-views.png')} alt="Instagram views screenshot from the gaming account" />
-            <div className="label" style={{ color: '#c084fc' }}>Gaming · IG Reels · 934K (90d)</div>
-          </div>
-          <div className="phone-shot">
-            <img src={asset('assets/creator-90d.png')} alt="YouTube Shorts 90-day view screenshot from the gaming account" />
-            <div className="label" style={{ color: '#ff7a7a' }}>Gaming · YT Shorts · 805K</div>
-          </div>
-        </div>
+        <ReceiptWall groups={RECEIPTS} />
       </div>
     </main>
   );
