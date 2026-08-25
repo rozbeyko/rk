@@ -492,7 +492,10 @@ hr.rule-thin { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
   font-family: var(--serif);
   font-weight: 400;
   font-size: clamp(56px, 9vw, 132px);
-  line-height: 0.92;
+  /* Newsreader's descenders run ~0.22em below the baseline and its caps
+     stand ~0.70em tall, so anything under ~0.95 puts the "y" of Kyrylo
+     into the "R" of Rozbeiko. 0.98 keeps the block tight and clears it. */
+  line-height: 0.98;
   letter-spacing: -0.04em;
   margin: 0 0 24px;
 }
