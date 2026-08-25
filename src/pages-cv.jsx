@@ -31,7 +31,7 @@ export function WorkPage() {
         {/* Snapshot stats */}
         <section style={{ margin: '24px 0 56px' }}>
           <StatStrip items={[
-            { n: '6', u: 'yrs', l: 'Project / Delivery management' },
+            { n: '8', u: '+yrs', l: 'In tech · 6 in delivery management' },
             { n: '10', u: '+',  l: 'Major programmes shipped' },
             { n: '150', u: '+', l: 'People led across teams' },
             { n: '4', u: '',  l: 'Industries (Insurance · SaaS · Gaming · AgriTech)' },

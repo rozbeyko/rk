@@ -34,7 +34,7 @@ export const DRAFT_PATHS = new Set(
 );
 
 export const STATS = [
-  { n: "6", u: "yrs", l: "Leading delivery" },
+  { n: "8", u: "+yrs", l: "In tech · 6 leading delivery" },
   { n: "$2M", u: "+",  l: "Largest budget owned" },
   { n: "50", u: "+",  l: "People in distributed teams" },
   { n: "+18", u: "%", l: "Gross margin lifted at Triangu" },
