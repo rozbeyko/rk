@@ -341,6 +341,7 @@ export function PhoneShowcase({ shots, side = 'right', badge, interval = 4200 })
       </div>
 
       <div className="phone3d-controls">
+        {shots.length > 1 && (
         <div className="phone3d-dots" role="tablist" aria-label="Screenshots">
           {shots.map((s, n) => (
             <button
@@ -354,6 +355,7 @@ export function PhoneShowcase({ shots, side = 'right', badge, interval = 4200 })
             />
           ))}
         </div>
+        )}
         <div className="phone3d-label mono">{shots[i].label}</div>
       </div>
     </div>

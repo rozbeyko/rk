@@ -2,13 +2,16 @@ import React from 'react';
 import { CASES, RECS } from './data.js';
 import { PageTitle, KpiRow, LiveSignal } from './ui.jsx';
 
+const NUM = ['zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
+const COUNT_WORD = NUM[CASES.length] || String(CASES.length);
+
 export function CasesPage() {
   return (
     <main className="page">
       <div className="container">
         <PageTitle
           crumb={[{ label: '004 — Case studies' }]}
-          title='Six programmes, <em>told properly.</em>'
+          title={COUNT_WORD + ' pieces of work, <em>told properly.</em>'}
           lede="One-paragraph summaries rarely survive the second meeting. These are slower writeups — what the situation was, what I actually did, what changed. Read whichever one matches the role you're hiring for."
         />
 
@@ -93,7 +96,7 @@ export function CaseDetail({ slug }) {
                   status={c.slug === 'maintra' ? 'SHIPPING' : c.status}
                   label={
                     c.slug === 'axora'   ? 'In production. Used daily. Still shipping.' :
-                    c.slug === 'maintra' ? 'v1 live · v1.1 in build' :
+                    c.slug === 'maintra' ? 'v1.5.3 live on iOS & Android · 1,000+ users' :
                     'Currently active'
                   }
                 />

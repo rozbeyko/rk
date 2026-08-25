@@ -1,6 +1,6 @@
 import React from 'react';
 import { SITE, NOW, CASES, RECS, SKILLS, OPERATING_NOW, NOW_TIMELINE, MATURITY } from './data.js';
-import { Portrait, Reveal, StatStrip, PageTitle, LiveSignal, asset } from './ui.jsx';
+import { Portrait, Reveal, StatStrip, PageTitle, LiveSignal, PhoneShowcase, asset } from './ui.jsx';
 
 export function HomePage() {
   return (
@@ -153,12 +153,10 @@ export function HomePage() {
                 <a className="link" href="https://rozbeyko.github.io/maintra.public/index.html" target="_blank" rel="noreferrer">Open the app ↗</a>
               </div>
             </div>
-            <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-              <div className="phone-shot" style={{ maxWidth: 240 }}>
-                <img src={asset('assets/maintra-garage.png')} alt="Maintra garage view" />
-                <div className="label">Maintra · garage</div>
-              </div>
-            </div>
+            <PhoneShowcase
+              side="right"
+              shots={[{ src: 'assets/maintra/v153-garage.jpg', label: 'Maintra v1.5.3 · the garage' }]}
+            />
           </div>
         </section>
 
