@@ -70,11 +70,11 @@ export function MaintraPage() {
           <span>Side project · 2026</span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 24, alignItems: 'center', marginBottom: 24 }}>
-          <img src={asset('assets/maintra-logo.png')} alt="Maintra logo" style={{ width: 80, height: 80, display: 'block' }} />
+        <div className="lockup">
+          <img className="lockup-mark" src={asset('assets/maintra-logo.png')} alt="Maintra logo" width="560" height="529" />
           <div>
-            <h1 className="page-title" style={{ margin: 0 }}>Maintra<span className="it" style={{ color: 'var(--accent)', fontStyle: 'italic' }}>.</span></h1>
-            <p className="mono small muted" style={{ marginTop: 8 }}>maintra.public · v1.5.3 · 2026</p>
+            <h1 className="page-title lockup-word">Maintra<span className="it" style={{ color: 'var(--accent)', fontStyle: 'italic' }}>.</span></h1>
+            <p className="mono small muted lockup-sub">maintra.public · v1.5.3 · 2026</p>
           </div>
         </div>
 

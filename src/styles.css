@@ -1661,3 +1661,26 @@ footer.foot {
   .receipt-frame, .receipt-zoom, .receipt-lightbox { transition: none; animation: none; }
   .receipt-frame:hover { transform: none; }
 }
+
+/* Project lockup — a mark set against a wordmark, not floating beside it.
+   The mark is sized to the wordmark's cap height rather than its line box,
+   the gap is optical rather than the grid's default, and the line box is
+   collapsed to 1 so the sub-line sits on the wordmark instead of under a
+   band of leading. */
+.lockup {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.4vw, 18px);
+  margin-bottom: 28px;
+}
+.lockup-mark {
+  height: clamp(46px, 6vw, 68px);
+  width: auto;
+  display: block;
+  flex: none;
+}
+.page-title.lockup-word {
+  margin: 0;
+  line-height: 1;
+}
+.lockup-sub { margin: 6px 0 0; }
