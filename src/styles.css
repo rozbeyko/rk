@@ -1333,8 +1333,8 @@ footer.foot {
 
 /* ─── PhoneShowcase — CSS-3D device with a screenshot carousel ─────────── */
 .phone3d-wrap {
-  perspective: 1400px;
-  perspective-origin: 50% 40%;
+  perspective: 1250px;
+  perspective-origin: 50% 42%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1345,30 +1345,62 @@ footer.foot {
   width: 100%;
   max-width: 288px;
   transform-style: preserve-3d;
-  transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform 650ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.phone3d-right .phone3d { transform: rotateY(-15deg) rotateX(5deg) rotateZ(0.6deg); }
-.phone3d-left  .phone3d { transform: rotateY(15deg)  rotateX(5deg) rotateZ(-0.6deg); }
+.phone3d-right .phone3d { transform: rotateY(-23deg) rotateX(6deg) rotateZ(0.8deg); }
+.phone3d-left  .phone3d { transform: rotateY(23deg)  rotateX(6deg) rotateZ(-0.8deg); }
 .phone3d-wrap:hover .phone3d,
 .phone3d-wrap:focus-within .phone3d { transform: rotateY(0deg) rotateX(0deg); }
 
+/* the extruded chassis: slabs stacked backwards along Z */
+.phone3d-solid {
+  position: relative;
+  transform-style: preserve-3d;
+}
+.phone3d-slab {
+  position: absolute;
+  inset: 0;
+  border-radius: 42px;
+  display: block;
+}
+
+/* rim keys — half-buried in the side wall so they extrude with it */
+.phone3d-key {
+  position: absolute;
+  width: 4px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #6e6e78, #34343c);
+  transform: translateZ(-13px);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+.phone3d-key-power  { right: -3px; top: 25%; height: 58px; }
+.phone3d-key-vol-up { left: -3px;  top: 20%; height: 34px; }
+.phone3d-key-vol-dn { left: -3px;  top: 33%; height: 34px; }
+
+/* the front face: bezel + screen */
 .phone3d-body {
   position: relative;
-  border-radius: 40px;
+  border-radius: 42px;
   padding: 9px;
-  background: linear-gradient(155deg, #3a3a40 0%, #131316 32%, #08080a 62%, #2b2b31 100%);
+  background:
+    linear-gradient(148deg,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0.06) 14%,
+      rgba(255, 255, 255, 0) 30%),
+    linear-gradient(155deg, #43434a 0%, #17171b 34%, #0a0a0c 64%, #33333a 100%);
   box-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.14) inset,
-    0 -2px 0 rgba(0, 0, 0, 0.6) inset,
-    0 40px 70px -28px rgba(0, 0, 0, 0.55),
-    0 12px 26px -12px rgba(0, 0, 0, 0.4);
+    0 0 0 1px rgba(255, 255, 255, 0.13) inset,
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 44px 60px -22px rgba(0, 0, 0, 0.45),
+    0 16px 30px -14px rgba(0, 0, 0, 0.35);
 }
 .phone3d-screen {
   position: relative;
-  border-radius: 32px;
+  border-radius: 34px;
   overflow: hidden;
   background: #0a0a0c;
   aspect-ratio: 589 / 1280;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.85) inset;
 }
 .phone3d-shot {
   position: absolute;
@@ -1385,12 +1417,12 @@ footer.foot {
 .phone3d-glare {
   position: absolute;
   inset: 9px;
-  border-radius: 32px;
+  border-radius: 34px;
   pointer-events: none;
   background: linear-gradient(118deg,
-    rgba(255, 255, 255, 0.16) 0%,
-    rgba(255, 255, 255, 0.05) 22%,
-    rgba(255, 255, 255, 0) 46%);
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 21%,
+    rgba(255, 255, 255, 0) 45%);
 }
 .phone3d-badge {
   position: absolute;
@@ -1403,11 +1435,11 @@ footer.foot {
   border: 1px solid var(--line-2);
   border-radius: 999px;
   padding: 5px 11px;
-  transform: translateZ(46px);
+  transform: translateZ(60px);
   white-space: nowrap;
 }
-.phone3d-right .phone3d-badge { right: -26px; }
-.phone3d-left  .phone3d-badge { left: -26px; }
+.phone3d-right .phone3d-badge { right: -30px; }
+.phone3d-left  .phone3d-badge { left: -30px; }
 
 .phone3d-controls { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .phone3d-dots { display: flex; gap: 8px; }
@@ -1433,13 +1465,12 @@ footer.foot {
 }
 
 @media (max-width: 900px) {
-  .phone3d-right .phone3d, .phone3d-left .phone3d { transform: none; }
+  .phone3d-right .phone3d, .phone3d-left .phone3d { transform: rotateY(-9deg) rotateX(3deg); }
   .phone3d-badge { display: none; }
-  .phone3d { max-width: 260px; }
+  .phone3d { max-width: 262px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .phone3d, .phone3d-shot { transition: none; }
-  .phone3d-right .phone3d, .phone3d-left .phone3d { transform: none; }
 }
 
 /* Showcase row — a block of copy beside a PhoneShowcase */

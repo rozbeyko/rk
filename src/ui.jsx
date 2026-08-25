@@ -267,6 +267,22 @@ export function Footer() {
 // PhoneShowcase — a CSS-3D phone with a cross-fading screenshot carousel
 // inside the screen. `side` tilts the device so it leans into the column of
 // text next to it: 'right' means the phone sits on the right of the text.
+//
+// The chassis is a real extrusion, not a rotated card: DEPTH copies of the
+// body outline are stacked backwards along Z, so the rounded side wall is
+// actually there when the device turns. slabTone() shades them — a bright
+// chamfer at the front, a dark trough in the middle, a softer back rail —
+// which is what reads as machined metal rather than a flat grey band.
+const DEPTH = 30;
+
+function slabTone(n, total) {
+  if (n < 2) return 'rgb(122,122,134)';
+  if (n > total - 4) return 'rgb(58,58,68)';
+  const t = (n - 2) / (total - 6);
+  const v = Math.round(64 - 40 * Math.sin(Math.PI * t));
+  return `rgb(${v},${v},${v + 6})`;
+}
+
 export function PhoneShowcase({ shots, side = 'right', badge, interval = 4200 }) {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -286,20 +302,40 @@ export function PhoneShowcase({ shots, side = 'right', badge, interval = 4200 })
       onMouseLeave={() => setPaused(false)}
     >
       <div className="phone3d">
-        <div className="phone3d-body">
-          <div className="phone3d-screen">
-            {shots.map((s, n) => (
-              <img
-                key={s.src}
-                src={asset(s.src)}
-                alt={s.label}
-                className={'phone3d-shot' + (n === i ? ' is-active' : '')}
-                loading={n === 0 ? 'eager' : 'lazy'}
-                aria-hidden={n === i ? undefined : true}
-              />
-            ))}
+        <div className="phone3d-solid">
+          {/* extruded chassis — one slab per pixel of thickness */}
+          {Array.from({ length: DEPTH }, (_, n) => (
+            <span
+              key={n}
+              className="phone3d-slab"
+              aria-hidden="true"
+              style={{
+                transform: `translateZ(${-(n + 1)}px)`,
+                background: slabTone(n, DEPTH),
+              }}
+            />
+          ))}
+
+          {/* rim hardware, sunk halfway into the chassis */}
+          <span className="phone3d-key phone3d-key-power" aria-hidden="true" />
+          <span className="phone3d-key phone3d-key-vol-up" aria-hidden="true" />
+          <span className="phone3d-key phone3d-key-vol-dn" aria-hidden="true" />
+
+          <div className="phone3d-body">
+            <div className="phone3d-screen">
+              {shots.map((s, n) => (
+                <img
+                  key={s.src}
+                  src={asset(s.src)}
+                  alt={s.label}
+                  className={'phone3d-shot' + (n === i ? ' is-active' : '')}
+                  loading={n === 0 ? 'eager' : 'lazy'}
+                  aria-hidden={n === i ? undefined : true}
+                />
+              ))}
+            </div>
+            <span className="phone3d-glare" aria-hidden="true" />
           </div>
-          <span className="phone3d-glare" aria-hidden="true" />
         </div>
         {badge && <span className="phone3d-badge mono">{badge}</span>}
       </div>
