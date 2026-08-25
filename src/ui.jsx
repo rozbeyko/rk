@@ -263,3 +263,63 @@ export function Footer() {
     </footer>
   );
 }
+
+// PhoneShowcase — a CSS-3D phone with a cross-fading screenshot carousel
+// inside the screen. `side` tilts the device so it leans into the column of
+// text next to it: 'right' means the phone sits on the right of the text.
+export function PhoneShowcase({ shots, side = 'right', badge, interval = 4200 }) {
+  const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || shots.length < 2) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    const t = setTimeout(() => setI((n) => (n + 1) % shots.length), interval);
+    return () => clearTimeout(t);
+  }, [i, paused, shots.length, interval]);
+
+  return (
+    <div
+      className={'phone3d-wrap phone3d-' + side}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className="phone3d">
+        <div className="phone3d-body">
+          <div className="phone3d-screen">
+            {shots.map((s, n) => (
+              <img
+                key={s.src}
+                src={asset(s.src)}
+                alt={s.label}
+                className={'phone3d-shot' + (n === i ? ' is-active' : '')}
+                loading={n === 0 ? 'eager' : 'lazy'}
+                aria-hidden={n === i ? undefined : true}
+              />
+            ))}
+          </div>
+          <span className="phone3d-glare" aria-hidden="true" />
+        </div>
+        {badge && <span className="phone3d-badge mono">{badge}</span>}
+      </div>
+
+      <div className="phone3d-controls">
+        <div className="phone3d-dots" role="tablist" aria-label="Screenshots">
+          {shots.map((s, n) => (
+            <button
+              key={s.src}
+              type="button"
+              role="tab"
+              aria-selected={n === i}
+              aria-label={s.label}
+              className={'phone3d-dot' + (n === i ? ' is-active' : '')}
+              onClick={() => setI(n)}
+            />
+          ))}
+        </div>
+        <div className="phone3d-label mono">{shots[i].label}</div>
+      </div>
+    </div>
+  );
+}

@@ -1330,3 +1330,144 @@ footer.foot {
 
 /* selection */
 ::selection { background: var(--accent); color: var(--paper); }
+
+/* ─── PhoneShowcase — CSS-3D device with a screenshot carousel ─────────── */
+.phone3d-wrap {
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.phone3d {
+  position: relative;
+  width: 100%;
+  max-width: 288px;
+  transform-style: preserve-3d;
+  transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.phone3d-right .phone3d { transform: rotateY(-15deg) rotateX(5deg) rotateZ(0.6deg); }
+.phone3d-left  .phone3d { transform: rotateY(15deg)  rotateX(5deg) rotateZ(-0.6deg); }
+.phone3d-wrap:hover .phone3d,
+.phone3d-wrap:focus-within .phone3d { transform: rotateY(0deg) rotateX(0deg); }
+
+.phone3d-body {
+  position: relative;
+  border-radius: 40px;
+  padding: 9px;
+  background: linear-gradient(155deg, #3a3a40 0%, #131316 32%, #08080a 62%, #2b2b31 100%);
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.14) inset,
+    0 -2px 0 rgba(0, 0, 0, 0.6) inset,
+    0 40px 70px -28px rgba(0, 0, 0, 0.55),
+    0 12px 26px -12px rgba(0, 0, 0, 0.4);
+}
+.phone3d-screen {
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #0a0a0c;
+  aspect-ratio: 589 / 1280;
+}
+.phone3d-shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transform: scale(1.012);
+  transition: opacity 620ms ease, transform 900ms ease;
+}
+.phone3d-shot.is-active { opacity: 1; transform: scale(1); }
+.phone3d-glare {
+  position: absolute;
+  inset: 9px;
+  border-radius: 32px;
+  pointer-events: none;
+  background: linear-gradient(118deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.05) 22%,
+    rgba(255, 255, 255, 0) 46%);
+}
+.phone3d-badge {
+  position: absolute;
+  top: 22px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--paper);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 5px 11px;
+  transform: translateZ(46px);
+  white-space: nowrap;
+}
+.phone3d-right .phone3d-badge { right: -26px; }
+.phone3d-left  .phone3d-badge { left: -26px; }
+
+.phone3d-controls { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.phone3d-dots { display: flex; gap: 8px; }
+.phone3d-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease, border-color 200ms ease;
+}
+.phone3d-dot:hover { border-color: var(--accent); }
+.phone3d-dot.is-active { background: var(--accent); border-color: var(--accent); transform: scale(1.25); }
+.phone3d-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  min-height: 1.2em;
+}
+
+@media (max-width: 900px) {
+  .phone3d-right .phone3d, .phone3d-left .phone3d { transform: none; }
+  .phone3d-badge { display: none; }
+  .phone3d { max-width: 260px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phone3d, .phone3d-shot { transition: none; }
+  .phone3d-right .phone3d, .phone3d-left .phone3d { transform: none; }
+}
+
+/* Showcase row — a block of copy beside a PhoneShowcase */
+.showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+  margin: 56px 0;
+}
+.showcase.is-reversed { grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr); }
+.showcase.is-reversed > .showcase-copy { order: 2; }
+.showcase.is-reversed > .phone3d-wrap { order: 1; }
+.showcase-copy { max-width: 56ch; }
+.showcase-copy h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+}
+.showcase-copy p { margin: 0 0 1.1em; color: var(--ink-2); }
+.showcase-copy p:last-child { margin-bottom: 0; }
+.showcase-copy ul { padding-left: 20px; margin: 0 0 1.1em; color: var(--ink-2); }
+.showcase-copy li { margin-bottom: 8px; }
+@media (max-width: 900px) {
+  .showcase, .showcase.is-reversed { grid-template-columns: minmax(0, 1fr); }
+  .showcase.is-reversed > .showcase-copy { order: 1; }
+  .showcase.is-reversed > .phone3d-wrap { order: 2; }
+}

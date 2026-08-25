@@ -439,6 +439,8 @@ export const CASES = [
       { p: "I run delivery for a living, but I'd never owned a thing end-to-end from idea to public URL by myself. The problem I picked was personal: I could never keep on top of what had been done to my car and what was due next. Receipts in a glovebox, notes in three apps, half-remembered conversations with the service-shop guys. There had to be one place that knew everything." },
       { h: "Where it got to" },
       { p: "**Past 1,000 users.** For a pet project with no marketing budget, no team and no paid acquisition, that's the number I care about — it's the point where a thing stops being a demo you show friends and starts being software other people rely on. Strangers now keep their car's service history in it." },
+      { h: "The redesign" },
+      { p: "In July 2026 I rebuilt the whole thing. The old app worked and was boring — a stack of grey cards you'd only open when something was already wrong. **v1.5.0 shipped on 27 July after 196 commits**, the largest release the app has had: the garage became a polaroid deck, the car screen was rebuilt around a photo hero, home-screen widgets landed on both platforms, VIN and registration-document scanning went in, and parts you buy got separated from work you do. Three releases later it's on **v1.5.3**." },
       { h: "What I learned" },
       { p: "When you're the PM, the engineer, the QA and the customer all at once, you find out very quickly which of your delivery instincts are real and which are habits. I'm keeping the ones that survived contact with the keyboard." },
     ],

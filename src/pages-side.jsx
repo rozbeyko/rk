@@ -1,6 +1,20 @@
 import React from 'react';
 import { SITE, CREATOR, CERTS, BOOKS, RECS, POSTS, CIVIC_GALLERY } from './data.js';
-import { PageTitle, StatStrip, KpiRow, LogoMark, Reveal, asset } from './ui.jsx';
+import { PageTitle, StatStrip, KpiRow, LogoMark, Reveal, PhoneShowcase, asset } from './ui.jsx';
+
+const MAINTRA_NOW = [
+  { src: 'assets/maintra/v153-garage.jpg', label: '01 · Garage — the polaroid deck' },
+  { src: 'assets/maintra/v153-car.jpg',    label: '02 · Car screen — photo hero & history' },
+  { src: 'assets/maintra/v153-plan.jpg',   label: '03 · AI plan — what is due, and why' },
+  { src: 'assets/maintra/v153-ai.jpg',     label: '04 · AI entry — type it or scan the receipt' },
+];
+
+const MAINTRA_BEFORE = [
+  { src: 'assets/maintra-garage.png',   label: '01 · Garage — a list of cards' },
+  { src: 'assets/maintra-services.png', label: '02 · Services' },
+  { src: 'assets/maintra-plan.png',     label: '03 · Plan' },
+  { src: 'assets/maintra-ai.png',       label: '04 · AI service entry' },
+];
 
 export function MaintraPage() {
   return (
@@ -16,7 +30,7 @@ export function MaintraPage() {
           <img src={asset('assets/maintra-logo.png')} alt="Maintra logo" style={{ width: 80, height: 80, display: 'block' }} />
           <div>
             <h1 className="page-title" style={{ margin: 0 }}>Maintra<span className="it" style={{ color: 'var(--accent)', fontStyle: 'italic' }}>.</span></h1>
-            <p className="mono small muted" style={{ marginTop: 8 }}>maintra.public · v1.0 · 2026</p>
+            <p className="mono small muted" style={{ marginTop: 8 }}>maintra.public · v1.5.3 · 2026</p>
           </div>
         </div>
 
@@ -26,38 +40,60 @@ export function MaintraPage() {
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginBottom: 40 }}>
           <span className="tag solid">● Live</span>
+          <span className="tag">v1.5.3</span>
           <span className="tag">1,000+ users</span>
-          <span className="tag">AI service-entry parser</span>
-          <span className="tag">5 modules</span>
+          <span className="tag">iOS & Android</span>
+          <span className="tag">6 languages</span>
           <a className="link mono" style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', marginLeft: 'auto' }} href="https://rozbeyko.github.io/maintra.public/index.html" target="_blank" rel="noreferrer">Open the app ↗</a>
-        </div>
-
-        {/* Real screenshots */}
-        <div className="phone-shots">
-          <div className="phone-shot">
-            <img src={asset('assets/maintra-garage.png')} alt="Maintra garage view" />
-            <div className="label">01 · Garage</div>
-          </div>
-          <div className="phone-shot">
-            <img src={asset('assets/maintra-services.png')} alt="Maintra services tab" />
-            <div className="label">02 · Services</div>
-          </div>
-          <div className="phone-shot">
-            <img src={asset('assets/maintra-plan.png')} alt="Maintra AI plan" />
-            <div className="label">03 · AI Plan</div>
-          </div>
-          <div className="phone-shot">
-            <img src={asset('assets/maintra-ai.png')} alt="Maintra AI service entry" />
-            <div className="label">04 · Andrew (AI)</div>
-          </div>
         </div>
 
         <KpiRow items={[
           { n: '1,000+', l: 'users' },
+          { n: 'v1.5.3', l: 'current release' },
           { n: '1', l: 'solo founder' },
-          { n: '5', l: 'modules · services · plan · fuel · finance · chat' },
-          { n: 'AI', l: 'Andrew, the service-entry parser' },
+          { n: '6', l: 'languages' },
         ]} />
+
+        {/* ── The app today ───────────────────────────────────────────── */}
+        <div className="showcase" style={{ marginTop: 64 }}>
+          <div className="showcase-copy">
+            <div className="up muted" style={{ marginBottom: 12 }}>Where it is now · v1.5.3</div>
+            <h2>A service book that looks like a shoebox of photographs.</h2>
+            <p>
+              The garage is a <b>polaroid deck</b> — each car a photo print with washi tape, a sticker and a handwritten odometer stamp. Swipe between cars, swipe up to open one. If you hate it, a manual-gearbox shifter in Settings switches the whole app back to a classic table view; both are live skins, so every feature works in either.
+            </p>
+            <p>
+              Underneath the paper: a <b>maintenance plan the AI writes from your own history and notes</b> ("the gearbox clicks when shifting" turns into an urgent transmission inspection with a reason attached), a <b>service log</b> that separates parts you bought from work you actually had done, fuel and consumption measured properly between full tanks, and money that converts at <b>the exchange rate of the day the job happened</b> — not today's.
+            </p>
+            <p>
+              Adding a record is a sentence or a photo. Type <em>"changed oil and filters at 175 000 km, 3 650 UAH at Auto Plus"</em>, or point the camera at the receipt, and it files itself into structured rows you can correct before saving.
+            </p>
+          </div>
+          <PhoneShowcase shots={MAINTRA_NOW} side="right" badge="v1.5.3 · live" />
+        </div>
+
+        {/* ── The redesign ────────────────────────────────────────────── */}
+        <div className="showcase is-reversed" style={{ marginTop: 88 }}>
+          <PhoneShowcase shots={MAINTRA_BEFORE} side="left" badge="before · v1.4.2" />
+          <div className="showcase-copy">
+            <div className="up muted" style={{ marginBottom: 12 }}>What it looked like before</div>
+            <h2>The redesign — 196 commits, one release.</h2>
+            <p>
+              This is v1.4.2, which is what everybody used until <b>27 July 2026</b>. It worked — every feature the app has today was already in there in some form. It was also a stack of grey cards that told you nothing you couldn't get from a spreadsheet.
+            </p>
+            <p>
+              The problem I couldn't fix with another feature: a service book is a chore. You only open it when something is already wrong, so the app had no reason to exist on a good day. That's a product problem dressed as a design one, and the answer was the same either way — <b>the thing had to be worth looking at.</b> Carbon dark, gold in place of the old teal, a doodle background that drifts as you tilt the phone, and the garage rebuilt as prints in an album rather than rows in a table.
+            </p>
+            <p>
+              It shipped as <b>v1.5.0</b> — 196 commits after v1.4.2, the largest release the app has had. Home-screen widgets on both platforms, the car screen rebuilt around a photo hero, VIN and registration-document scanning, parts-you-bought split from work-you-did, and full data export because your history should be yours.
+            </p>
+            <p>
+              Three releases later — 1.5.1, 1.5.2, and now <b>1.5.3</b> — the shape has held, and the work has moved to the unglamorous half: importing history from other apps without silently mangling it, honest currency conversion, Slavic plural forms, and per-car frames.
+            </p>
+          </div>
+        </div>
+
+        <hr className="rule" />
 
         <div className="two-col" style={{ marginTop: 56 }}>
           <article className="prose">
@@ -71,11 +107,13 @@ export function MaintraPage() {
 
             <h2>What it does</h2>
             <ul>
-              <li><b>Service book</b> — every record, structured. Brake fluid changed? It's a row, not a memory.</li>
-              <li><b>Plan</b> — AI-generated maintenance plan with urgency tiers (urgent · soon · ok), pegged to mileage and time.</li>
-              <li><b>Andrew (AI)</b> — paste a free-text description ("fixed brakes 800 UAH, oil + filters 250, painted bumper 200, balanced tyres 50, all done 750 km ago") and Andrew files it as structured records.</li>
-              <li><b>Fuel & financials</b> — running totals, cost per km, mileage tracking.</li>
-              <li><b>Chat</b> — ask questions about the car ("when did I last change the timing belt?").</li>
+              <li><b>Service book</b> — every record, structured, with the garage saved as a real place rather than a string you retype. Parts you bought sit on a shelf until you mark them fitted, so an oil filter in the boot doesn't reset your oil countdown.</li>
+              <li><b>Plan</b> — an AI maintenance plan pegged to mileage <em>and</em> time, with urgency tiers and a stated reason for each item, built from your history and your own notes. EVs get an oil-free plan instead of irrelevant oil changes.</li>
+              <li><b>AI entry</b> — type the sentence or photograph the receipt; it comes back as structured rows you check before saving.</li>
+              <li><b>VIN & registration scanning</b> — photograph the plate or the document and make, model, year, engine and drivetrain fill themselves in — with anything uncertain marked as a guess rather than quietly asserted.</li>
+              <li><b>Fuel & money</b> — consumption measured between full tanks, cost per km, and multi-currency conversion at the rate of the day the job happened.</li>
+              <li><b>Your data, portable</b> — full JSON backup or per-car CSV, plus import from other apps' exports. No tier required.</li>
+              <li><b>Home-screen widgets</b> on Android and iOS, plus lock-screen complications.</li>
             </ul>
 
             <h2>Where it got to</h2>
@@ -99,22 +137,24 @@ export function MaintraPage() {
 
             <h2>What's next</h2>
             <ul>
-              <li>Multi-vehicle service plan templates.</li>
-              <li>Recurring service reminders pegged to mileage AND time.</li>
-              <li>Export-to-PDF service book (the actual stapled thing dealerships ask for).</li>
-              <li>Public garage profile for collectors who want to show their service history when they sell.</li>
+              <li>A regular service as <em>one</em> thing to schedule — oil, filter and a look-over added together, rescheduling as a set.</li>
+              <li>Export-to-PDF service book (the stapled thing a buyer or a dealership actually asks for).</li>
+              <li>Public garage profile, for people who want to show their service history when they sell.</li>
+              <li>More import providers — every app that lets you leave it makes the next one easier to leave too.</li>
             </ul>
           </article>
 
           <aside style={{ position: 'sticky', top: 90, alignSelf: 'start' }}>
             <div className="side-meta">
               <div className="row"><div className="k">Status</div><div className="v" style={{ color: 'var(--good)' }}>● Live</div></div>
+              <div className="row"><div className="k">Version</div><div className="v">1.5.3</div></div>
               <div className="row"><div className="k">Users</div><div className="v">1,000+</div></div>
               <div className="row"><div className="k">Role</div><div className="v">Solo — concept, design, build, launch</div></div>
-              <div className="row"><div className="k">Stack</div><div className="v">Web app · LLM API · static-hosted</div></div>
-              <div className="row"><div className="k">Launched</div><div className="v">2026</div></div>
+              <div className="row"><div className="k">Platforms</div><div className="v">Google Play · App Store</div></div>
+              <div className="row"><div className="k">Stack</div><div className="v">React Native · Expo · Supabase · offline-first SQLite · Claude</div></div>
+              <div className="row"><div className="k">Languages</div><div className="v">EN · UK · PL · FR · IT · ES</div></div>
+              <div className="row"><div className="k">Redesign</div><div className="v">v1.5.0 · 27 Jul 2026 · 196 commits</div></div>
               <div className="row"><div className="k">Try it</div><div className="v"><a className="link" href="https://rozbeyko.github.io/maintra.public/index.html" target="_blank" rel="noreferrer">maintra app ↗</a></div></div>
-              <div className="row"><div className="k">Source</div><div className="v"><a className="link" href="https://rozbeyko.github.io" target="_blank" rel="noreferrer">github</a></div></div>
             </div>
           </aside>
         </div>
