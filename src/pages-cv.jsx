@@ -18,20 +18,23 @@ function BuildoutRail({ label, stages, current }) {
 import { EXPERIENCE, EDUCATION, VOLUNTEER } from './data.js';
 import { PageTitle, StatStrip, LogoMark } from './ui.jsx';
 
+const NUMW = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
+const COMPANY_WORD = NUMW[EXPERIENCE.length] || String(EXPERIENCE.length);
+
 export function WorkPage() {
   return (
     <main className="page">
       <div className="container">
         <PageTitle
           crumb={[{ label: '003 — Experience' }]}
-          title='Six years of <em>delivery</em>, four companies.'
+          title={'Ten years in <em>tech</em>, ' + COMPANY_WORD + ' companies.'}
           lede="A working CV. The chronology is honest, the metrics are real, and every project on this page is one I personally led or co-led. PDF available on request."
         />
 
         {/* Snapshot stats */}
         <section style={{ margin: '24px 0 56px' }}>
           <StatStrip items={[
-            { n: '8', u: '+yrs', l: 'In tech · 6 in delivery management' },
+            { n: '10', u: 'yrs', l: 'In tech · 6 in delivery management' },
             { n: '10', u: '+',  l: 'Major programmes shipped' },
             { n: '150', u: '+', l: 'People led across teams' },
             { n: '4', u: '',  l: 'Industries (Insurance · SaaS · Gaming · AgriTech)' },

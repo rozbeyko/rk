@@ -26,7 +26,7 @@ export function HomePage() {
               <span>·</span>
               <span>Kyiv · Remote / EU / UK</span>
               <span>·</span>
-              <span>8+ yrs in tech</span>
+              <span>10 yrs in tech</span>
             </div>
           </div>
           <Portrait caption="Kyrylo Rozbeiko · Kyiv" />
@@ -188,7 +188,7 @@ export function AboutPage() {
         <PageTitle
           crumb={[{ label: '002 — About' }]}
           title='I make <em>delivery</em> boring &mdash; on purpose.'
-          lede="Head of Delivery with 8+ years in tech, 6 of them leading complex, multi-team initiatives across insurance, SaaS, and gaming. I specialise in turning messy ideas into predictable delivery: clear scope, realistic plans, transparent risks, and steady outcomes for the business."
+          lede="Head of Delivery with 10 years in tech, 6 of them leading complex, multi-team initiatives across insurance, SaaS, and gaming. I specialise in turning messy ideas into predictable delivery: clear scope, realistic plans, transparent risks, and steady outcomes for the business."
         />
 
         {/* Delivery maturity rail — where I operate today */}

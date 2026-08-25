@@ -477,6 +477,7 @@ hr.rule-thin { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 .lm-safe { background: #2c8aa6; color: #f4f2ec; }
 .lm-uni { background: #f4f2ec; color: #a8421f; border: 1px solid var(--line); }
 .lm-creator { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #fff; }
+.lm-delta { background: #3a5a78; color: #f4f2ec; }
 
 /* hero */
 .hero {

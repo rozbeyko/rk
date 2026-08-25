@@ -34,7 +34,7 @@ export const DRAFT_PATHS = new Set(
 );
 
 export const STATS = [
-  { n: "8", u: "+yrs", l: "In tech · 6 leading delivery" },
+  { n: "10", u: "yrs", l: "In tech · 6 leading delivery" },
   { n: "$2M", u: "+",  l: "Largest budget owned" },
   { n: "50", u: "+",  l: "People in distributed teams" },
   { n: "+18", u: "%", l: "Gross margin lifted at Triangu" },
@@ -165,7 +165,27 @@ export const EXPERIENCE = [
         ],
       },
     ],
+  },  {
+    company: "Delta Studio",
+    mark: "lm-delta",
+    glyph: "\u0394",
+    type: "Self-employed · 1 yr 1 mo",
+    roles: [
+      {
+        title: "Co-Owner",
+        when: "Aug 2016 — Aug 2017 · 1 yr 1 mo",
+        where: "Kyiv · On-site",
+        bullets: [
+          "Co-founded a digital studio building **websites, mobile apps and digital marketing** for clients — and owned the delivery side of it.",
+          "Coordinated a bench of **~50 outsourced specialists** — front-end, back-end, designers, marketers — rather than a payroll team. Everyone was a contractor, so nothing held unless the plan and the money were explicit.",
+          "Ran **up to 7 concurrent client projects** on Agile: scope, stakeholders, hand-offs and the dates we'd committed to.",
+          "Owned the commercial half too — studio strategy, finances, and competitor analysis both for clients and for us.",
+          "Where I learned the thing the rest of this CV is built on: delivery is mostly other people's expectations, and a plan nobody has read is not a plan.",
+        ],
+      },
+    ],
   },
+
 ];
 
 // ----- Operating-system layer -------------------------------------------
