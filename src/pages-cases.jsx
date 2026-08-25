@@ -92,7 +92,7 @@ export function CaseDetail({ slug }) {
                 <LiveSignal
                   status={c.slug === 'maintra' ? 'SHIPPING' : c.status}
                   label={
-                    c.slug === 'axora'   ? 'Used in real work. Still evolving.' :
+                    c.slug === 'axora'   ? 'In production. Used daily. Still shipping.' :
                     c.slug === 'maintra' ? 'v1 live · v1.1 in build' :
                     'Currently active'
                   }
@@ -100,11 +100,25 @@ export function CaseDetail({ slug }) {
               </div>
             )}
 
-            {c.body.map((seg, i) => (
-              seg.h
-                ? <h2 key={i}>{seg.h}</h2>
-                : <p key={i} dangerouslySetInnerHTML={{ __html: seg.p.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') }} />
-            ))}
+            {c.body.map((seg, i) => {
+              if (seg.h) return <h2 key={i}>{seg.h}</h2>;
+              if (seg.mods && c.modules) {
+                return (
+                  <div className="modules" key={i}>
+                    {c.modules.map((m, j) => (
+                      <div className="mod-row" key={j}>
+                        <div className="mod-n">{String(j + 1).padStart(2, '0')}</div>
+                        <div>
+                          <div className="mod-name">{m.name}</div>
+                          <p className="mod-desc">{m.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }
+              return <p key={i} dangerouslySetInnerHTML={{ __html: seg.p.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') }} />;
+            })}
 
             {c.capabilities && (() => {
               const groups = [

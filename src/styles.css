@@ -1280,6 +1280,43 @@ footer.foot {
 .capabilities .cap-row.partial .cap-label { color: var(--ink-2); }
 .capabilities .cap-row.todo    .cap-label { color: var(--muted); }
 
+/* Module list — Axora case */
+.modules {
+  margin: 16px 0 28px;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.modules .mod-row {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 0 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.modules .mod-n {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted-2);
+}
+.modules .mod-name {
+  font-weight: 600;
+  font-size: 15.5px;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.modules .mod-desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .modules .mod-row { grid-template-columns: 26px minmax(0, 1fr); gap: 0 10px; }
+}
+
 /* Respect reduced-motion across the whole live-signal layer */
 @media (prefers-reduced-motion: reduce) {
   .ls-live .ls-dot, .ls-shipping .ls-dot,

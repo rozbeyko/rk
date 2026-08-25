@@ -43,8 +43,8 @@ export function HomePage() {
             <div>
               <div className="up muted" style={{ marginBottom: 16 }}>Currently</div>
               <p style={{ fontFamily: 'var(--serif)', fontSize: 24, lineHeight: 1.4, margin: 0, color: 'var(--ink)' }}>
-                <strong style={{ fontWeight: 500 }}>Head of Delivery at <a className="link" href="#/work">Triangu</a></strong> — building the delivery practice for a fast-growing consultancy.
-                On the side, I ship <a className="link" href="#/maintra">Maintra</a>, an AI-powered service book for car owners, and run a <a className="link" href="#/creator">gaming creator account</a> in English (2.6M views in the last 90 days).
+                <strong style={{ fontWeight: 500 }}>Head of Delivery at <a className="link" href="#/work">Triangu</a></strong> — running a 40+ engagement portfolio on an operating model I built, with <a className="link" href="#/case/axora">Axora</a> live in production and gross margin up 18%.
+                On the side, I ship <a className="link" href="#/maintra">Maintra</a>, an AI-powered service book for car owners, now past 1,000 users.
               </p>
               <p style={{ marginTop: 24, color: 'var(--ink-2)', maxWidth: '52ch' }}>
                 Before Triangu I spent four years at EPAM running multi-stream delivery — most recently a $2M+ AI underwriting programme for a global insurer. Before that, Ubisoft, MHP, EF Education First, LastPass.
@@ -146,7 +146,7 @@ export function HomePage() {
                 Maintra — an AI service book for your garage.
               </h2>
               <p style={{ color: 'var(--ink-2)', maxWidth: '48ch' }}>
-                My first solo product launch — not on behalf of an employer. Type "changed oil and brakes for 200 bucks" and Andrew (the AI) files it into structured records. Plans, reminders, service history, the lot.
+                My first solo product launch — not on behalf of an employer. Type "changed oil and brakes for 200 bucks" and Andrew (the AI) files it into structured records. Plans, reminders, service history, the lot. <b>Past 1,000 users.</b>
               </p>
               <div style={{ marginTop: 20, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                 <a className="link" href="#/maintra">Project page →</a>

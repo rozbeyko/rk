@@ -21,12 +21,12 @@ export function MaintraPage() {
         </div>
 
         <p className="lede">
-          An AI-powered service book for car owners. My first fully personal product launch — not on behalf of an employer. Built to solve a real, boring problem I had myself: never being able to keep on top of what had been done to my car and what was due next.
+          An AI-powered service book for car owners. My first fully personal product launch — not on behalf of an employer. Built to solve a real, boring problem I had myself: never being able to keep on top of what had been done to my car and what was due next. It's now past <b>1,000 users</b>.
         </p>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginBottom: 40 }}>
           <span className="tag solid">● Live</span>
-          <span className="tag">v1.0</span>
+          <span className="tag">1,000+ users</span>
           <span className="tag">AI service-entry parser</span>
           <span className="tag">5 modules</span>
           <a className="link mono" style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', marginLeft: 'auto' }} href="https://rozbeyko.github.io/maintra.public/index.html" target="_blank" rel="noreferrer">Open the app ↗</a>
@@ -53,8 +53,8 @@ export function MaintraPage() {
         </div>
 
         <KpiRow items={[
+          { n: '1,000+', l: 'users' },
           { n: '1', l: 'solo founder' },
-          { n: 'v1.0', l: 'shipped public' },
           { n: '5', l: 'modules · services · plan · fuel · finance · chat' },
           { n: 'AI', l: 'Andrew, the service-entry parser' },
         ]} />
@@ -77,6 +77,14 @@ export function MaintraPage() {
               <li><b>Fuel & financials</b> — running totals, cost per km, mileage tracking.</li>
               <li><b>Chat</b> — ask questions about the car ("when did I last change the timing belt?").</li>
             </ul>
+
+            <h2>Where it got to</h2>
+            <p>
+              <b>Past 1,000 users.</b> No marketing budget, no team, no paid acquisition — just the app, a public URL, and people telling other people. For a pet project that's the number that matters to me: it's the line where a thing stops being a demo you show your friends and becomes software strangers depend on to remember when they last changed a timing belt.
+            </p>
+            <p>
+              It also changed how I treat the backlog. When it was just my car, every idea was equally interesting. With a thousand people in it, the questions became the real ones — what breaks quietly, what people actually open weekly, what a support message costs when there's exactly one person to answer it.
+            </p>
 
             <h2>What I learned shipping it</h2>
             <p>
@@ -101,6 +109,7 @@ export function MaintraPage() {
           <aside style={{ position: 'sticky', top: 90, alignSelf: 'start' }}>
             <div className="side-meta">
               <div className="row"><div className="k">Status</div><div className="v" style={{ color: 'var(--good)' }}>● Live</div></div>
+              <div className="row"><div className="k">Users</div><div className="v">1,000+</div></div>
               <div className="row"><div className="k">Role</div><div className="v">Solo — concept, design, build, launch</div></div>
               <div className="row"><div className="k">Stack</div><div className="v">Web app · LLM API · static-hosted</div></div>
               <div className="row"><div className="k">Launched</div><div className="v">2026</div></div>
